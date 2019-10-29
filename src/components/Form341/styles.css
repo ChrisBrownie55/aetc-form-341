@@ -1,0 +1,27 @@
+.Form341 {
+  --aspect-ratio: 1.29;
+
+  --width: calc(70vw + 5rem);
+  width: var(--width);
+  height: calc(var(--width) / var(--aspect-ratio));
+  max-width: 60rem;
+  max-height: calc(60rem / var(--aspect-ratio));
+
+  margin: auto;
+}
+
+.Form341 > .konvajs-content {
+  width: 100% !important;
+  height: 100% !important;
+
+  border: solid 1px lightgrey;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.Form341 canvas {
+  --width: 100%;
+
+  width: var(--width) !important;
+  height: 100% !important;
+}
