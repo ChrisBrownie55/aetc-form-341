@@ -32,35 +32,75 @@ function Individual341() {
         width={width}
         align="center"
       />
-      <Rect x={x} y={y + 65} width={width} height={1} fill="black" />
+
+      <Rect x={x} y={y + 65} width={width} height={2} fill="black" />
       <Text
         text="LAST NAME - FIRST NAME - MIDDLE INITIAL"
-        fontSize={18}
+        fontSize={16}
         x={x + 8}
         y={y + 82}
       />
-      <Rect x={x + 703} y={y + 66} width={2} height={99} fill="black" />
-      <Text text="GRADE" fontSize={18} x={x + 714} y={y + 82} />
+
+      <Rect x={x + 703} y={y + 66} width={2} height={100} fill="black" />
+      <Text text="GRADE" fontSize={16} x={x + 714} y={y + 82} />
       <Rect x={x} y={y + 166} width={width} height={2} fill="black" />
-      <Text text="ORGANIZATION" fontSize={18} x={x + 8} y={y + 183} />
-      <Rect x={x + 538} y={y + 167} width={2} height={99} fill="black" />
+      <Text text="ORGANIZATION" fontSize={16} x={x + 8} y={y + 183} />
+      <Rect x={x + 538} y={y + 167} width={2} height={100} fill="black" />
       <Text
         text="CLASS/FLIGHT (If Applicable)"
-        fontSize={18}
+        fontSize={16}
         x={x + 549}
         y={y + 183}
       />
+
       <Rect x={x} y={y + 267} width={width} height={2} fill="black" />
       <Text
         text="EXCELLENCE/DISCREPENCY (Be specific)"
-        fontSize={24}
-        fontStyle="bold"
+        fontSize={16}
         x={x}
         y={y + 276}
         width={width}
         align="center"
       />
       <Rect x={x} y={y + 299} width={width} height={2} fill="black" />
+
+      <Rect x={x} y={y + 501} width={width} height={2} fill="black" />
+      <Text text="TIME" fontSize={16} x={x + 8} y={y + 518} />
+      <Rect x={x + 200} y={y + 502} width={2} height={67} fill="black" />
+      <Text text="DATE" fontSize={16} x={x + 212} y={y + 518} />
+      <Rect x={x + 461} y={y + 502} width={2} height={67} fill="black" />
+      <Text text="PLACE" fontSize={16} x={x + 473} y={y + 518} />
+
+      <Rect x={x} y={y + 569} width={width} height={2} fill="black" />
+      <Text
+        text="PRINTED NAME OF REPORTING INDIVIDUAL"
+        fontSize={16}
+        x={x + 8}
+        y={y + 585}
+      />
+      <Rect x={x + 461} y={y + 569} width={2} height={110} fill="black" />
+      <Text
+        text="SIGNATURE OF REPORTING INDIVIDUAL"
+        fontSize={16}
+        x={x + 473}
+        y={y + 585}
+      />
+
+      <Text
+        text="AETC FORM 341, 20070815"
+        fontSize={16}
+        x={x + 5}
+        y={y + height + 8}
+        fontStyle="bold"
+      />
+      <Text
+        text="PREVIOUS EDITION IS OBSOLETE."
+        fontSize={16}
+        x={x + 5}
+        y={y + height + 8}
+        align="right"
+        width={width - 18}
+      />
     </Layer>
   );
 }
