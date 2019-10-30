@@ -60,14 +60,8 @@ function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
       <Text text={flight} fontSize={26} x={x + 549} y={y + 221} />
 
       <Rect x={x} y={y + 267} width={width} height={2} fill="black" />
-      <Text
-        text="EXCELLENCE/DISCREPENCY (Be specific)"
-        fontSize={16}
-        x={x}
-        y={y + 276}
-        width={width}
-        align="center"
-      />
+      <Text text="EXCELLENCE/DISCREPENCY" fontSize={16} x={x + 298} y={y + 276} />
+      <Text text="(Be specific)" fontSize={16} fontStyle="italic" x={x + 535} y={y + 276} />
       <Rect x={x} y={y + 299} width={width} height={2} fill="black" />
 
       <Rect x={x} y={y + 501} width={width} height={2} fill="black" />
