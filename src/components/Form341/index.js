@@ -44,8 +44,12 @@ function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
 
       <Rect x={x + 703} y={y + 66} width={2} height={100} fill="black" />
       <Text text="GRADE" fontSize={16} x={x + 714} y={y + 82} />
+      <Text text={grade} fontSize={26} x={x + 714} y={y + 120} />
+
       <Rect x={x} y={y + 166} width={width} height={2} fill="black" />
       <Text text="ORGANIZATION" fontSize={16} x={x + 8} y={y + 183} />
+      <Text text={organization} fontSize={26} x={x + 8} y={y + 221} />
+
       <Rect x={x + 538} y={y + 167} width={2} height={100} fill="black" />
       <Text
         text="CLASS/FLIGHT (If Applicable)"
@@ -53,6 +57,7 @@ function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
         x={x + 549}
         y={y + 183}
       />
+      <Text text={flight} fontSize={26} x={x + 549} y={y + 221} />
 
       <Rect x={x} y={y + 267} width={width} height={2} fill="black" />
       <Text
