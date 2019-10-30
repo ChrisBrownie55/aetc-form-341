@@ -6,12 +6,12 @@ import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from '../../constants';
 
 import './styles.css';
 
-function Individual341() {
-  const x = 98;
-  const y = 95;
-
+function Individual341({ xIndex, yIndex }) {
   const width = 912;
   const height = 680;
+
+  const x = 98 + (width + 194) * xIndex;
+  const y = 95 + (height + 161) * yIndex;
 
   return (
     <Layer>
@@ -112,7 +112,10 @@ function Form341() {
       width={PAPER_341_WIDTH}
       height={PAPER_341_HEIGHT}
     >
-      <Individual341 />
+      <Individual341 xIndex={0} yIndex={0} />
+      <Individual341 xIndex={1} yIndex={0} />
+      <Individual341 xIndex={0} yIndex={1} />
+      <Individual341 xIndex={1} yIndex={1} />
     </Stage>
   );
 }
