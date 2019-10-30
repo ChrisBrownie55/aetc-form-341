@@ -6,7 +6,7 @@ import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from '../../constants';
 
 import './styles.css';
 
-function Individual341({ xIndex, yIndex }) {
+function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
   const width = 912;
   const height = 680;
 
@@ -40,6 +40,7 @@ function Individual341({ xIndex, yIndex }) {
         x={x + 8}
         y={y + 82}
       />
+      <Text text={name} fontSize={26} x={x + 8} y={y + 120} />
 
       <Rect x={x + 703} y={y + 66} width={2} height={100} fill="black" />
       <Text text="GRADE" fontSize={16} x={x + 714} y={y + 82} />
@@ -105,17 +106,17 @@ function Individual341({ xIndex, yIndex }) {
   );
 }
 
-function Form341() {
+function Form341({ formData }) {
   return (
     <Stage
       className="Form341"
       width={PAPER_341_WIDTH}
       height={PAPER_341_HEIGHT}
     >
-      <Individual341 xIndex={0} yIndex={0} />
-      <Individual341 xIndex={1} yIndex={0} />
-      <Individual341 xIndex={0} yIndex={1} />
-      <Individual341 xIndex={1} yIndex={1} />
+      <Individual341 xIndex={0} yIndex={0} {...formData} />
+      <Individual341 xIndex={1} yIndex={0} {...formData} />
+      <Individual341 xIndex={0} yIndex={1} {...formData} />
+      <Individual341 xIndex={1} yIndex={1} {...formData} />
     </Stage>
   );
 }
