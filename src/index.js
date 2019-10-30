@@ -1,9 +1,11 @@
 import React, { useState, useCallback, useMemo } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
 import Form341 from "./components/Form341";
+import Button from "@material-ui/core/Button";
+
 import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from "./constants";
+import "./styles.css";
 
 function useInput({ initialValue = "", ...props }) {
   const [value, setValue] = useState(initialValue);
@@ -47,12 +49,12 @@ function printForm() {
 }
 
 function App() {
-  const [name, setName, nameInput] = useInput({ placeholder: "Smith John A" });
-  const [grade, setGrade, gradeInput] = useInput({ placeholder: "E-4" });
-  const [organization, setOrganization, organizationInput] = useInput({
+  const [name, , nameInput] = useInput({ placeholder: "Smith John A" });
+  const [grade, , gradeInput] = useInput({ placeholder: "E-4" });
+  const [organization, , organizationInput] = useInput({
     placeholder: "123 TRS, Bldg 4567, Room D410"
   });
-  const [flight, setFlight, flightInput] = useInput({ placeholder: "DOD" });
+  const [flight, , flightInput] = useInput({ placeholder: "DOD" });
 
   const formData = useMemo(() => ({ name, grade, organization, flight }), [
     name,
@@ -68,7 +70,14 @@ function App() {
       {organizationInput}
       {flightInput}
       <Form341 formData={formData} />
-      <button onClick={printForm}>Print</button>
+      <Button
+        onClick={printForm}
+        variant="contained"
+        color="primary"
+        className="App__print-button"
+      >
+        Print
+      </Button>
     </div>
   );
 }
