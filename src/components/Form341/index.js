@@ -56,10 +56,11 @@ function Individual341() {
         fontSize={24}
         fontStyle="bold"
         x={x}
-        y={y + 25}
+        y={y + 276}
         width={width}
         align="center"
       />
+      <Rect x={x} y={y + 299} width={width} height={2} fill="black" />
     </Layer>
   );
 }
