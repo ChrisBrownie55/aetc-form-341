@@ -1,16 +1,16 @@
-import React, { useState, useCallback, useMemo } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useCallback, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 
-import Form341 from "./components/Form341";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Form341 from './components/Form341';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
-import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from "./constants";
-import "./styles.css";
+import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from './constants';
+import './styles.css';
 
-function useInput({ initialValue = "", ...props }) {
+function useInput({ initialValue = '', ...props }) {
   const [value, setValue] = useState(initialValue);
   const handleChange = useCallback(event => setValue(event.target.value), [
     setValue
@@ -30,11 +30,15 @@ function useInput({ initialValue = "", ...props }) {
 }
 
 function printForm() {
-  const dataURL = document.querySelector("canvas").toDataURL("image/png");
+  const dataURL = document.querySelector('canvas').toDataURL('image/png');
   const windowHTML = `
     <!DOCTYPE html>
     <html lang="en">
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=yes"
+        />
       </head>
       <body style="margin: 0;">
         <img src="${dataURL}" style="width: 100vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg);" />
@@ -43,8 +47,8 @@ function printForm() {
   `;
 
   const printWindow = window.open(
-    "",
-    "",
+    '',
+    '',
     `width=${PAPER_341_WIDTH},height=${PAPER_341_HEIGHT}`
   );
   printWindow.document.open();
@@ -59,24 +63,24 @@ function printForm() {
 
 function App() {
   const [name, , nameInput] = useInput({
-    placeholder: "Smith John A",
-    id: "full-name",
-    label: "Full Name"
+    placeholder: 'Smith John A',
+    id: 'full-name',
+    label: 'Full Name'
   });
   const [grade, , gradeInput] = useInput({
-    placeholder: "E-4",
-    id: "grade",
-    label: "Grade"
+    placeholder: 'E-4',
+    id: 'grade',
+    label: 'Grade'
   });
   const [organization, , organizationInput] = useInput({
-    placeholder: "123 TRS, Bldg 4567, Room D410",
-    id: "organization",
-    label: "Organization"
+    placeholder: '123 TRS, Bldg 4567, Room D410',
+    id: 'organization',
+    label: 'Organization'
   });
   const [flight, , flightInput] = useInput({
-    placeholder: "DOD",
-    id: "flight",
-    label: "Class/Flight"
+    placeholder: 'DOD',
+    id: 'flight',
+    label: 'Class/Flight'
   });
 
   const formData = useMemo(() => ({ name, grade, organization, flight }), [
@@ -132,5 +136,5 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
