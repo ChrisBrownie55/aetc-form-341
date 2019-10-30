@@ -3,6 +3,10 @@
   text-align: center;
 }
 
-.App__print-button {
-  margin-top: 1rem !important;
+.Input {
+  width: 100%;
+}
+
+.App__title {
+  margin-bottom: 2rem !important;
 }

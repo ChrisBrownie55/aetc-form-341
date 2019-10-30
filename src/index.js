@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 
 import Form341 from "./components/Form341";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from "./constants";
 import "./styles.css";
@@ -16,7 +19,13 @@ function useInput({ initialValue = "", ...props }) {
   return [
     value,
     setValue,
-    <input type="text" value={value} onChange={handleChange} {...props} />
+    <TextField
+      variant="outlined"
+      value={value}
+      onChange={handleChange}
+      className="Input"
+      {...props}
+    />
   ];
 }
 
@@ -49,12 +58,26 @@ function printForm() {
 }
 
 function App() {
-  const [name, , nameInput] = useInput({ placeholder: "Smith John A" });
-  const [grade, , gradeInput] = useInput({ placeholder: "E-4" });
-  const [organization, , organizationInput] = useInput({
-    placeholder: "123 TRS, Bldg 4567, Room D410"
+  const [name, , nameInput] = useInput({
+    placeholder: "Smith John A",
+    id: "full-name",
+    label: "Full Name"
   });
-  const [flight, , flightInput] = useInput({ placeholder: "DOD" });
+  const [grade, , gradeInput] = useInput({
+    placeholder: "E-4",
+    id: "grade",
+    label: "Grade"
+  });
+  const [organization, , organizationInput] = useInput({
+    placeholder: "123 TRS, Bldg 4567, Room D410",
+    id: "organization",
+    label: "Organization"
+  });
+  const [flight, , flightInput] = useInput({
+    placeholder: "DOD",
+    id: "flight",
+    label: "Class/Flight"
+  });
 
   const formData = useMemo(() => ({ name, grade, organization, flight }), [
     name,
@@ -64,21 +87,48 @@ function App() {
   ]);
 
   return (
-    <div className="App">
-      {nameInput}
-      {gradeInput}
-      {organizationInput}
-      {flightInput}
-      <Form341 formData={formData} />
-      <Button
-        onClick={printForm}
-        variant="contained"
-        color="primary"
-        className="App__print-button"
-      >
-        Print
-      </Button>
-    </div>
+    <Grid container className="App">
+      <Grid item xs={1} />
+      <Grid item xs={10}>
+        <Grid container direction="column" spacing={3}>
+          <Grid item xs={12}>
+            <Typography variant="h4" component="h1" className="App__title">
+              AETC Form 341 Builder
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Grid container justify="center" spacing={3}>
+              <Grid item xs={12} sm={6}>
+                {nameInput}
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                {gradeInput}
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify="center" spacing={3}>
+              <Grid item xs={12} sm={6}>
+                {organizationInput}
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                {flightInput}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Form341 formData={formData} />
+        <Button
+          onClick={printForm}
+          variant="contained"
+          color="primary"
+          className="App__print-button"
+        >
+          Print
+        </Button>
+      </Grid>
+      <Grid item xs={1} />
+    </Grid>
   );
 }
 

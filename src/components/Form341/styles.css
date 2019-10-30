@@ -1,14 +1,14 @@
 .Form341 {
   --aspect-ratio: 1.29;
 
-  --width: calc(80vw + 5rem);
+  --width: calc(80vw);
   width: var(--width);
   height: calc(var(--width) / var(--aspect-ratio));
   --max-width: 120rem;
   max-width: var(--max-width);
   max-height: calc(var(--max-width) / var(--aspect-ratio));
 
-  margin: auto;
+  margin: 2rem auto 1rem;
 }
 
 .Form341 > .konvajs-content {
