@@ -14,7 +14,7 @@ function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
   const y = 95 + (height + 161) * yIndex;
 
   return (
-    <Layer>
+    <>
       <Rect
         x={x}
         y={y}
@@ -107,7 +107,7 @@ function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
         align="right"
         width={width - 18}
       />
-    </Layer>
+    </>
   );
 }
 
@@ -118,10 +118,12 @@ function Form341({ formData }) {
       width={PAPER_341_WIDTH}
       height={PAPER_341_HEIGHT}
     >
-      <Individual341 xIndex={0} yIndex={0} {...formData} />
-      <Individual341 xIndex={1} yIndex={0} {...formData} />
-      <Individual341 xIndex={0} yIndex={1} {...formData} />
-      <Individual341 xIndex={1} yIndex={1} {...formData} />
+      <Layer>
+        <Individual341 xIndex={0} yIndex={0} {...formData} />
+        <Individual341 xIndex={1} yIndex={0} {...formData} />
+        <Individual341 xIndex={0} yIndex={1} {...formData} />
+        <Individual341 xIndex={1} yIndex={1} {...formData} />
+      </Layer>
     </Stage>
   );
 }
