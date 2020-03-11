@@ -1,11 +1,19 @@
-import React from 'react';
-import { Stage, Layer, Rect, Text } from 'react-konva';
+import React from "react";
+import { Stage, Layer, Rect, Text } from "react-konva";
 
-import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from '../../constants';
+import { PAPER_341_WIDTH, PAPER_341_HEIGHT } from "../../constants";
 
-import './styles.css';
+import "./styles.css";
 
-function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
+function Individual341({
+  xIndex,
+  yIndex,
+  name,
+  grade,
+  organization,
+  flight,
+  mtlState
+}) {
   const width = 912;
   const height = 680;
 
@@ -14,6 +22,18 @@ function Individual341({ xIndex, yIndex, name, grade, organization, flight }) {
 
   return (
     <>
+      {mtlState.matches('on') && (
+        <>
+          <Text text="MTL" fontSize={16} fontStyle="bold" x={x + 2} y={y - 30} />
+          <Rect x={x + 45} y={y - 17} width={width / 4} height={1} fill="black" />
+          <Text text={mtlState.context.mtl} fontSize={26} x={x + 45} y={y - 40} />
+
+          <Text text="Transition Phase" fontSize={16} fontStyle="bold" x={x + width - 300} y={y - 30} />
+          <Rect x={x + width - 165} y={y - 17} width={width / 12} height={1} fill="black" />
+          <Text text={mtlState.context.transitionPhase} fontSize={26} x={x + width - 150} y={y - 40} />
+        </>
+      )}
+
       <Rect
         x={x}
         y={y}
