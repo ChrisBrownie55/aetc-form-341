@@ -1,8 +1,12 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useMemo } from "react";
+import { useMachine } from "@xstate/react";
+import { MTLMachine } from "./mtl-machine";
 import ReactDOM from "react-dom";
 
 import Form341 from "./components/Form341";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -12,9 +16,6 @@ import "./styles.css";
 
 function useInput({ initialValue = "", ...props }) {
   const [value, setValue] = useState(initialValue);
-  const handleChange = useCallback(event => setValue(event.target.value), [
-    setValue
-  ]);
 
   return [
     value,
@@ -22,7 +23,7 @@ function useInput({ initialValue = "", ...props }) {
     <TextField
       variant="outlined"
       value={value}
-      onChange={handleChange}
+      onChange={event => setValue(event.target.value)}
       className="Input"
       {...props}
     />
@@ -79,12 +80,12 @@ function App() {
     label: "Class/Flight"
   });
 
-  const formData = useMemo(() => ({ name, grade, organization, flight }), [
-    name,
-    grade,
-    organization,
-    flight
-  ]);
+  const [mtlState, send] = useMachine(MTLMachine);
+
+  const formData = useMemo(
+    () => ({ name, grade, organization, flight, mtlState }),
+    [name, grade, organization, flight, mtlState]
+  );
 
   return (
     <Grid container className="App">
@@ -113,6 +114,56 @@ function App() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 {flightInput}
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify="center" spacing={3}>
+              <Grid item xs={12} sm={4}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={mtlState.matches('on')}
+                      onChange={() => send('TOGGLE')}
+                      color="primary"
+                    />
+                  }
+                  label={
+                    mtlState.matches('on')
+                      ? 'Hide MTL'
+                      : 'Show MTL'
+                  }
+                />
+              </Grid>
+              <Grid item xs={6} sm={5}>
+                {mtlState.matches('on') && (
+                  <TextField
+                    variant="outlined"
+                    label="MTL"
+                    placeholder="SSgt Doe"
+                    value={mtlState.context.mtl}
+                    onChange={event => {
+                      send({ type: 'UPDATE_MTL', mtl: event.target.value })
+                    }}
+                    className="Input"
+                  />
+                )}
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                {mtlState.matches('on') && (
+                  <TextField
+                    variant="outlined"
+                    label="Phase"
+                    placeholder="VI"
+                    value={mtlState.context.transitionPhase}
+                    onChange={event => {
+                      send({
+                        type: 'UPDATE_TRANSITION_PHASE',
+                        transitionPhase: event.target.value
+                      });
+                    }}
+                  />
+                )}
               </Grid>
             </Grid>
           </Grid>
